@@ -188,7 +188,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   resetStatus = () => {
-  };
+  }
 
   public onAutocompleteInput(e): void {
     this.autocompleteRequest.input = e.currentTarget.value;
