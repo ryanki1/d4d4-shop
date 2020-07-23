@@ -1,11 +1,15 @@
 import {BrowserModule} from '@angular/platform-browser';
+import {MatListModule} from '@angular/material/list';
 import {NgModule} from '@angular/core';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {ReactiveFormsModule} from '@angular/forms';
+
+import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
+
 import {NgxPayPalModule} from 'ngx-paypal';
 
 import {AppComponent} from './app.component';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
-import {AgmCoreModule} from '@agm/core';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -16,10 +20,9 @@ import {AgmCoreModule} from '@agm/core';
     NgxPayPalModule,
     MatGoogleMapsAutocompleteModule,
     NoopAnimationsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyByeQpibd5_IMklx_zcw2mNUWEawo7PpQk',
-      libraries: ['places']
-    })
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

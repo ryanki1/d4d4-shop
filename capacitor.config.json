@@ -1,0 +1,13 @@
+{
+  "appId": "com.d4d4shop.app",
+  "appName": "d4d4-shop",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

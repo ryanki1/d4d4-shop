@@ -1,0 +1,19 @@
+form {
+  width: 100%;
+}
+
+.grid input {
+  width: 100%;
+}
+
+mat-list {
+  cursor: pointer;
+}
+
+mat-list-option {
+  color: black !important;
+}
+
+mat-list-option:hover {
+  background-color: cornflowerblue;
+}
