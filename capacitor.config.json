@@ -3,7 +3,7 @@
   "appName": "d4d4-shop",
   "bundledWebRuntime": false,
   "npmClient": "npm",
-  "webDir": "www",
+  "webDir": "src",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0
