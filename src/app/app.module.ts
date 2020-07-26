@@ -6,6 +6,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 
+import {IonicModule} from '@ionic/angular';
 import {NgxPayPalModule} from 'ngx-paypal';
 
 import {AppComponent} from './app.component';
@@ -22,7 +23,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     NoopAnimationsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    MatListModule
+    MatListModule,
+    IonicModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
