@@ -1,11 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      {{ clip }}
+    <ion-title class="ion-text-center">
+      {{ clip.title }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-product imgPath="./assets/icon/hairclip-teaser.jpg"></app-product>
+  <app-product [txtDescription]="clip.description"
+               imgPath="./assets/icon/hairclip-teaser.jpg">
+  </app-product>
 </ion-content>

@@ -1,11 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      {{ tag }}
+    <ion-title class="ion-text-center">
+      {{ tag.title }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-product imgPath="../../assets/icon/dog-tag-teaser.jpg"></app-product>
+  <app-product [txtDescription]="tag.description"
+               imgPath="../../assets/icon/dog-tag-teaser.jpg"></app-product>
 </ion-content>

@@ -1,0 +1,19 @@
+.text-col {
+  position: relative;;
+
+  .description {
+    padding-left: 5%;
+    padding-right: 2.5%;
+  }
+
+  .checkout {
+    position: absolute;
+    width: 100%;
+    right: 2.5%;
+    bottom: 0;
+
+    .cart-icon {
+      padding-left: 2.5%;
+    }
+  }
+}
