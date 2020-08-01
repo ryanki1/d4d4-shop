@@ -8,9 +8,17 @@
 
   .checkout {
     position: absolute;
-    width: 100%;
     right: 2.5%;
     bottom: 0;
+    z-index: 99;
+
+    ion-label {
+      text-overflow: initial;
+    }
+
+    ion-label, ion-icon {
+      cursor: pointer;
+    }
 
     .cart-icon {
       padding-left: 2.5%;

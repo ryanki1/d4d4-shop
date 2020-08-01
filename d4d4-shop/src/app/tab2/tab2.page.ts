@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 
 import {Constants} from '../shared/constants';
+import {ProductType} from '../shared/product-type.enum';
 
 @Component({
   selector: 'app-tab2',
@@ -9,6 +10,7 @@ import {Constants} from '../shared/constants';
 })
 export class Tab2Page {
   public tag = Constants.tag;
+  public ProductType = ProductType;
 
   constructor() {
   }

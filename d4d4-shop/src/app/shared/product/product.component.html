@@ -11,9 +11,10 @@
              size-sm="7"
              size-xs="12">
       <ion-textarea class="description">{{txtDescription}}</ion-textarea>
-      <ion-item class="checkout">
-        <ion-label class="ion-text-end">Go to checkout</ion-label>
-        <ion-icon class="cart-icon" name="cart-outline"></ion-icon>
+      <ion-item (click)="routeToProduct()" class="checkout">
+        <ion-label class="ion-text-end ion-padding-end">Go to checkout</ion-label>
+        <ion-icon class="cart-icon"
+                  name="cart-outline"></ion-icon>
       </ion-item>
     </ion-col>
   </ion-row>
