@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ProductType} from '../../shared/product-type.enum';
 
 @Component({
   selector: 'app-cart',
@@ -6,6 +7,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
+  public ProductType = ProductType;
 
   constructor() {
   }
