@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+
 import {ProductType} from '../../shared/product-type.enum';
 
 @Component({

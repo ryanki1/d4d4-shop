@@ -1,12 +1,7 @@
-import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 import {ICreateOrderRequest, IMoney, IPurchaseUnit, IUnitAmount} from 'ngx-paypal';
-import AutocompletePrediction = google.maps.places.AutocompletePrediction;
-import AutocompletionRequest = google.maps.places.AutocompletionRequest;
-import PlaceDetailsRequest = google.maps.places.PlaceDetailsRequest;
-import PlaceResult = google.maps.places.PlaceResult;
-import PlacesServiceStatus = google.maps.places.PlacesServiceStatus;
 
 @Component({
   selector: 'app-root',
@@ -18,8 +13,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   title = 'd4d4-shop';
   @ViewChild('map') mapEle: ElementRef;
   public payPalConfig;
-  public autocompleteResults: AutocompletePrediction[];
-  public addressForm;
+  public autocompleteResults: any[];
+  public addressForm: FormGroup;
   public addressFormModel = {
     term: [''],
     address: '',
@@ -69,23 +64,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   private showSuccess: boolean;
   private showCancel: boolean;
   private showError: boolean;
-  private autocompleteService;
-  private autocompleteRequest: AutocompletionRequest = {
-    input: '',
-    types: ['address']
-  };
-  private placesService;
-  private placeDetailsRequest: PlaceDetailsRequest;
-  private map;
 
-  constructor(
-    private fb: FormBuilder,
-    private cd: ChangeDetectorRef
-  ) {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
-    this.autocompleteService = new google.maps.places.AutocompleteService();
     this.addressForm = this.fb.group(this.addressFormModel);
     this.payPalConfig = {
       currency: 'GBP',
@@ -183,92 +166,62 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.map = new google.maps.Map(this.mapEle.nativeElement, {});
-    this.placesService = new google.maps.places.PlacesService(this.map);
+    // this.mapsAPILoader.load()
+    //   .then(() => {
+    //     this.map = new google.maps.Map(this.mapEle.nativeElement, {});
+    //     this.placesService = new google.maps.places.PlacesService(this.map);
+    //   });
   }
 
   resetStatus = () => {
-  }
+  };
 
-  public onAutocompleteInput(e): void {
-    this.autocompleteRequest.input = e.currentTarget.value;
-    if (!this.autocompleteRequest.input) {
-      return;
-    }
-    if (this.autocompleteRequest.input.length <= 2) {
-      return;
-    }
-    this.autocompleteService.getPlacePredictions(
-      this.autocompleteRequest,
-      (predictions: AutocompletePrediction[], status: PlacesServiceStatus) => {
-        if (status === PlacesServiceStatus.OK) {
-          this.autocompleteResults = predictions;
-          this.cd.detectChanges();
-        }
-      });
-  }
-
-  public onPlaceIdSelect(selectedPlaceId: string): void {
-    if (!selectedPlaceId) {
-      return;
-    }
-    this.placeDetailsRequest = {
-      placeId: selectedPlaceId,
-      fields: ['formatted_address', 'address_components']
-    };
-    this.placesService.getDetails(this.placeDetailsRequest,
-      (placeResult: PlaceResult, placesServiceStatus: PlacesServiceStatus) => {
-        if (placesServiceStatus !== PlacesServiceStatus.OK) {
-          return;
-        }
-        this.autocompleteResults = undefined;
-        this.addressForm.reset();
-        this.addressFormModel.address = placeResult && placeResult.formatted_address;
-        this.paypalOrder.purchase_units[0].shipping.address.streetNumber = placeResult &&
-          placeResult.address_components &&
-          placeResult.address_components.find(
-            (component) => {
-              return component.types.indexOf('street_number') > -1;
-            })?.short_name;
-        this.paypalOrder.purchase_units[0].shipping.address.route = placeResult &&
-          placeResult.address_components &&
-          placeResult.address_components.find(
-            (component) => {
-              return component.types.indexOf('route') > -1;
-            })?.short_name;
-        this.paypalOrder.purchase_units[0].shipping.address.address_line_1 = placeResult &&
-          placeResult.address_components &&
-          placeResult.address_components.find(
-            (component) => {
-              return component.types.indexOf('address_line_1') > -1;
-            })?.short_name;
-        this.paypalOrder.purchase_units[0].shipping.address.address_line_2 = placeResult &&
-          placeResult.address_components &&
-          placeResult.address_components.find(
-            (component) => {
-              return component.types.indexOf('address_line_2') > -1;
-            })?.short_name;
-        this.paypalOrder.purchase_units[0].shipping.address.admin_area_2 = placeResult &&
-          placeResult.address_components &&
-          placeResult.address_components.find(
-            (component) => {
-              return component.types.indexOf('administrative_area_level_2') > -1;
-            })?.short_name;
-        this.paypalOrder.purchase_units[0].shipping.address.postal_code = placeResult &&
-          placeResult.address_components &&
-          placeResult.address_components.find(
-            (component) => {
-              return component.types.indexOf('postal_code') > -1;
-            })?.short_name;
-        this.paypalOrder.purchase_units[0].shipping.address.country_code = placeResult &&
-          placeResult.address_components &&
-          placeResult.address_components.find(
-            (component) => {
-              return component.types.indexOf('country') > -1;
-            })?.short_name;
-        this.paypalOrder = {...this.paypalOrder};
-        this.cd.detectChanges();
-      });
+  public addressSelected(placeResultAny: any): void {
+    const placeResult = placeResultAny as google.maps.places.PlaceResult;
+    this.paypalOrder.purchase_units[0].shipping.address.streetNumber = placeResult &&
+      placeResult.address_components &&
+      placeResult.address_components.find(
+        (component) => {
+          return component.types.indexOf('street_number') > -1;
+        })?.short_name;
+    this.paypalOrder.purchase_units[0].shipping.address.route = placeResult &&
+      placeResult.address_components &&
+      placeResult.address_components.find(
+        (component) => {
+          return component.types.indexOf('route') > -1;
+        })?.short_name;
+    this.paypalOrder.purchase_units[0].shipping.address.address_line_1 = placeResult &&
+      placeResult.address_components &&
+      placeResult.address_components.find(
+        (component) => {
+          return component.types.indexOf('address_line_1') > -1;
+        })?.short_name;
+    this.paypalOrder.purchase_units[0].shipping.address.address_line_2 = placeResult &&
+      placeResult.address_components &&
+      placeResult.address_components.find(
+        (component) => {
+          return component.types.indexOf('address_line_2') > -1;
+        })?.short_name;
+    this.paypalOrder.purchase_units[0].shipping.address.admin_area_2 = placeResult &&
+      placeResult.address_components &&
+      placeResult.address_components.find(
+        (component) => {
+          return component.types.indexOf('administrative_area_level_2') > -1;
+        })?.short_name;
+    this.paypalOrder.purchase_units[0].shipping.address.postal_code = placeResult &&
+      placeResult.address_components &&
+      placeResult.address_components.find(
+        (component) => {
+          return component.types.indexOf('postal_code') > -1;
+        })?.short_name;
+    this.paypalOrder.purchase_units[0].shipping.address.country_code = placeResult &&
+      placeResult.address_components &&
+      placeResult.address_components.find(
+        (component) => {
+          return component.types.indexOf('country') > -1;
+        })?.short_name;
+    this.paypalOrder = {...this.paypalOrder};
+    // this.cd.detectChanges();
   }
 
 }

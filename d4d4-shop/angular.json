@@ -14,6 +14,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": false,
             "outputPath": "www",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -170,6 +171,46 @@
               "cordovaBuildTarget": "app:ionic-cordova-build:production",
               "devServerTarget": "app:serve:production"
             }
+          }
+        }
+      }
+    },
+    "libAddressCompletion": {
+      "projectType": "library",
+      "root": "projects/lib-address-completion",
+      "sourceRoot": "projects/lib-address-completion/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/lib-address-completion/tsconfig.lib.json",
+            "project": "projects/lib-address-completion/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lib-address-completion/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lib-address-completion/src/test.ts",
+            "tsConfig": "projects/lib-address-completion/tsconfig.spec.json",
+            "karmaConfig": "projects/lib-address-completion/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lib-address-completion/tsconfig.lib.json",
+              "projects/lib-address-completion/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

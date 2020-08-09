@@ -1,0 +1,21 @@
+form {
+  width: 100%;
+
+  .grid {
+    input {
+      width: 100%;
+    }
+  }
+
+  mat-selection-list {
+    cursor: pointer;
+
+    mat-list-option {
+      color: black !important;
+
+      &:hover {
+        background-color: cornflowerblue;
+      }
+    }
+  }
+}

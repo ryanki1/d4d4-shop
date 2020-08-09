@@ -1,29 +1,20 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {MatListModule} from '@angular/material/list';
 import {NgModule} from '@angular/core';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {ReactiveFormsModule} from '@angular/forms';
-
-import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 
 import {IonicModule} from '@ionic/angular';
 import {NgxPayPalModule} from 'ngx-paypal';
 
 import {AppComponent} from './app.component';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {LibAddressCompleteModule} from './addressComplete/lib-address-complete.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    LibAddressCompleteModule,
     BrowserModule,
     NgxPayPalModule,
-    MatGoogleMapsAutocompleteModule,
-    NoopAnimationsModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatListModule,
     IonicModule.forRoot()
   ],
   providers: [],

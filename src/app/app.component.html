@@ -357,37 +357,7 @@
   <h2>Resources</h2>
   <p>Here are some links to help you get started:</p>
 
-
-  <form [formGroup]="addressForm">
-    <div class="grid mdc-layout-grid">
-      <div *ngIf="!!addressFormModel.address"
-           class="mdc-layout-grid__inner">
-        <span>Selected address: </span>
-        <br/>
-        {{addressFormModel.address}}
-      </div>
-      <div *ngIf="!addressFormModel.address"
-           class="mdc-layout-grid__inner">
-        <span>Please select an address: </span>
-      </div>
-      <div class="mdc-layout-grid__inner">
-        <input (keypress)="onAutocompleteInput($event)"
-               formControlName="term"
-               matInput
-               placeholder="4 Ever Strawberryfields, Liverpool, UK"
-               type="text"/>
-      </div>
-    </div>
-    <mat-selection-list *ngIf="!!autocompleteResults"
-                        [multiple]="false">
-      <mat-list-option
-        (click)="onPlaceIdSelect(result.place_id)"
-        *ngFor="let result of autocompleteResults">
-        {{result.description}}
-      </mat-list-option>
-    </mat-selection-list>
-  </form>
-  <div #map></div>
+  <lib-address-complete (addressSelected)="addressSelected($event)"></lib-address-complete>
 
   <div class="card-container">
     <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">

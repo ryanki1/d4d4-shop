@@ -1,0 +1,30 @@
+<form [formGroup]="addressForm">
+  <div class="grid mdc-layout-grid">
+    <div *ngIf="!!(addressFormModelSubject | async).address"
+         class="mdc-layout-grid__inner">
+      <span>Selected addresses: </span>
+      <br/>
+      {{(addressFormModelSubject | async).address}}
+    </div>
+    <div *ngIf="!(addressFormModelSubject | async).address"
+         class="mdc-layout-grid__inner">
+      <span>Please select an address: </span>
+    </div>
+    <div class="mdc-layout-grid__inner">
+      <input (keypress)="onAutocompleteInput($event)"
+             formControlName="term"
+             matInput
+             placeholder="4 Ever Strawberryfields, Liverpool, UK"
+             type="text"/>
+    </div>
+  </div>
+  <mat-selection-list *ngIf="!!autocompleteResults"
+                      [multiple]="false">
+    <mat-list-option
+      (click)="onPlaceIdSelect(result.place_id)"
+      *ngFor="let result of autocompleteResults">
+      {{result.description}}
+    </mat-list-option>
+  </mat-selection-list>
+</form>
+<div #map></div>
