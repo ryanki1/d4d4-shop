@@ -15,7 +15,7 @@ import {MapsAPILoader} from '@agm/core';
 import {BehaviorSubject} from 'rxjs';
 
 @Component({
-  selector: 'lib-address-complete',
+  selector: 'app-address-complete',
   template: `
     <form [formGroup]="addressForm">
       <div class="grid mdc-layout-grid">

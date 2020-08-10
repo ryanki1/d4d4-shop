@@ -1,37 +1,35 @@
 <ion-content class="ion-padding">
   <ion-grid>
     <ion-row>
-      <ion-col size-sm="6"
-               size-xs="12">
-        <app-product [productType]="ProductType.Hairclip"
-                     imgPath="../../../assets/icon/hair-clip-order.jpg"></app-product>
+      <ion-col>
+        <ion-grid class="ion-hide-sm-down"
+                  size-sm="6">
+          <ion-row>
+            <ion-col>
+              <app-product [productType]="ProductType.Hairclip"
+                           imgPath="../../../assets/icon/hair-clip-order.jpg"></app-product>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <app-product [productType]="ProductType.Dogtag"
+                           imgPath="../../../assets/icon/dog-tag-order.jpg"></app-product>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <app-product [productType]="ProductType.Usbkey"
+                           imgPath="../../../assets/icon/usb-key-order.jpg"></app-product>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <ion-col>
       </ion-col>
       <ion-col size-sm="6"
                class="booking"
                size-xs="12">
         <lib-address-completion></lib-address-completion>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size-sm="6"
-               size-xs="12">
-        <app-product [productType]="ProductType.Dogtag"
-                     imgPath="../../../assets/icon/dog-tag-order.jpg"></app-product>
-      </ion-col>
-      <ion-col size-sm="6"
-               size-xs="12">
-        <app-product></app-product>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size-sm="6"
-               size-xs="12">
-        <app-product [productType]="ProductType.Usbkey"
-                     imgPath="../../../assets/icon/usb-key-order.jpg"></app-product>
-      </ion-col>
-      <ion-col size-sm="6"
-               size-xs="12">
-        <app-product></app-product>
       </ion-col>
     </ion-row>
   </ion-grid>

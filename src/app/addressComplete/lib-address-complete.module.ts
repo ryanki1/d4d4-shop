@@ -20,7 +20,7 @@ import {MatInputModule} from '@angular/material/input';
     MatListModule,
     MatInputModule,
     AgmCoreModule.forRoot({
-      apiKey: '---',
+      apiKey: 'AIzaSyBKkJDU1glg8CbKuxqhVUT-v7Ws354kE90',
       libraries: ['places']
     }),
   ],

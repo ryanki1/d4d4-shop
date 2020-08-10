@@ -6,6 +6,8 @@ import {NgxPayPalModule} from 'ngx-paypal';
 
 import {AppComponent} from './app.component';
 import {LibAddressCompleteModule} from './addressComplete/lib-address-complete.module';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import {LibAddressCompleteModule} from './addressComplete/lib-address-complete.m
     LibAddressCompleteModule,
     BrowserModule,
     NgxPayPalModule,
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [],
   bootstrap: [AppComponent]
